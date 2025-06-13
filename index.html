@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Juros Compostos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Juros Compostos</h1>
+        <form id="formulario">
+            <label>Valor inicial:</label>
+            <input type="number" step="0.01" name="valor_inicial" required>
+
+            <label>Valor mensal:</label>
+            <input type="number" step="0.01" name="aporte_mensal" required>
+
+            <label>Taxa de juros (%):</label>
+            <input type="number" step="0.01" name="taxa_juros" required>
+
+            <label>Período:</label>
+            <select name="periodo">
+                <option value="meses">Meses</option>
+                <option value="anos">Anos</option>
+            </select>
+
+            <label>Tempo:</label>
+            <input type="number" name="tempo" required>
+
+            <button type="submit">Calcular</button>
+            <button type="button" id="limpar">Limpar</button>
+        </form>
+        <div id="resultado"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

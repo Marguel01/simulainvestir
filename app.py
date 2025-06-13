@@ -3,35 +3,34 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
-@app.route("/calcular", methods=["POST"])
+@app.route('/calcular', methods=['POST'])
 def calcular():
     try:
-        valor_inicial = float(request.form["valor_inicial"])
-        aporte_mensal = float(request.form["aporte_mensal"])
-        taxa_juros = float(request.form["taxa_juros"]) / 100
-        tempo = int(request.form["tempo"])
-        periodo = request.form["periodo"]
-        if periodo == "anos":
+        valor_inicial = float(request.form['valor_inicial'])
+        aporte_mensal = float(request.form['aporte_mensal'])
+        taxa_juros = float(request.form['taxa_juros']) / 100
+        tempo = int(request.form['tempo'])
+        periodo = request.form['periodo']
+
+        if periodo == 'anos':
             tempo *= 12
+            taxa_juros /= 12
 
+        montante = valor_inicial
         montantes = []
-        meses = []
-        saldo = valor_inicial
 
-        for mes in range(1, tempo + 1):
-            saldo *= (1 + taxa_juros)
-            saldo += aporte_mensal
-            montantes.append(round(saldo, 2))
-            meses.append(mes)
+        for _ in range(tempo):
+            montante *= (1 + taxa_juros)
+            montante += aporte_mensal
+            montantes.append(round(montante, 2))
 
-        return jsonify({"meses": meses, "montantes": montantes})
-    except:
-        return jsonify({"erro": "Erro ao calcular. Verifique os dados."})
+        return jsonify({'montantes': montantes})
+    except Exception as e:
+        return jsonify({'erro': str(e)})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
-        
+if __name__ == '__main__':
+    app.run(debug=True)
