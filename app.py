@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
@@ -13,22 +14,24 @@ def calcular():
         aporte_mensal = float(request.form["aporte_mensal"])
         taxa_juros = float(request.form["taxa_juros"]) / 100
         tempo = int(request.form["tempo"])
-        periodo = request.form.get("periodo", "meses")
-
+        periodo = request.form["periodo"]
         if periodo == "anos":
             tempo *= 12
 
         montantes = []
+        meses = []
         saldo = valor_inicial
 
-        for _ in range(1, tempo + 1):
+        for mes in range(1, tempo + 1):
             saldo *= (1 + taxa_juros)
             saldo += aporte_mensal
             montantes.append(round(saldo, 2))
+            meses.append(mes)
 
-        return jsonify({"montantes": montantes})
+        return jsonify({"meses": meses, "montantes": montantes})
     except:
         return jsonify({"erro": "Erro ao calcular. Verifique os dados."})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+        
