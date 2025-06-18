@@ -1,0 +1,3 @@
+# flyctl launch added from hello-fly\.gitignore
+hello-fly\**\node_modules
+fly.toml
