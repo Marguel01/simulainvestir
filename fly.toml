@@ -1,36 +1,10 @@
-# fly.toml app configuration file generated for simulainvestir02 on 2025-06-18T09:33:33-03:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
-app = 'simulainvestir02'
-primary_region = 'gig'
+app = "simulainvestir"
 
 [build]
-  builtin = 'python'
 
 [env]
-  PORT = '8080'
+PORT = "8080"
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
-
-[[services]]
-  protocol = 'tcp'
-  internal_port = 8080
-
-  [[services.ports]]
-    port = 80
-
-  [[services.ports]]
-    port = 443
-
-[[vm]]
-  memory = '16gb'
-  cpu_kind = 'shared'
-  cpus = 8
