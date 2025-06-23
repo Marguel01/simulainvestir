@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 2rem;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+label, input, select, button {
+    display: block;
+    margin: 1rem 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #00BCD4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+canvas {
+    margin-top: 2rem;
+    background: #fff;
+    border-radius: 8px;
+}
+
+[data-theme="light"] {
+    --bg: #f0f0f0;
+    --text: #000;
+}
