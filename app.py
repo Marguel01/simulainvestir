@@ -20,31 +20,26 @@ def calcular():
             tempo *= 12
 
         saldo = valor_inicial
+        investido_total = valor_inicial
         meses = []
+        acumulado = []
         investido = []
-        juros_acumulados = []
-
-        total_investido = valor_inicial
-        total_juros = 0
+        juros = []
 
         for mes in range(1, tempo + 1):
             saldo *= (1 + taxa_juros)
             saldo += aporte_mensal
-
-            total_investido += aporte_mensal
-            total_juros = saldo - total_investido
-
+            investido_total += aporte_mensal
             meses.append(mes)
-            investido.append(round(saldo, 2))
-            juros_acumulados.append(round(total_juros, 2))
+            acumulado.append(round(saldo, 2))
+            investido.append(round(investido_total, 2))
+            juros.append(round(saldo - investido_total, 2))
 
         return jsonify({
             'meses': meses,
+            'acumulado': acumulado,
             'investido': investido,
-            'juros': juros_acumulados,
-            'total_investido': round(total_investido, 2),
-            'valor_final': round(saldo, 2),
-            'total_juros': round(total_juros, 2)
+            'juros': juros
         })
     except Exception as e:
         return jsonify({'erro': str(e)})
