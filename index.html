@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Juros Compostos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Juros Compostos</h1>
+        <form id="formulario">
+            <input type="number" step="0.01" name="valor_inicial" placeholder="Valor inicial (R$)" required>
+            <input type="number" step="0.01" name="aporte_mensal" placeholder="Aporte mensal (R$)" required>
+            <input type="number" step="0.01" name="taxa_juros" placeholder="Taxa de juros (% ao mês)" required>
+            <input type="number" name="tempo" placeholder="Período (meses)" required>
+            <select name="periodo">
+                <option value="meses">Meses</option>
+                <option value="anos">Anos</option>
+            </select>
+            <button type="submit">Calcular</button>
+            <button type="reset">Limpar</button>
+        </form>
+        <div id="resultado"></div>
+        <canvas id="graficoBarras"></canvas>
+        <canvas id="graficoPizza"></canvas>
+        <table id="tabelaResultados"></table>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
