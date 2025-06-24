@@ -1,19 +1,10 @@
 
-# SimulaInvestir - Calculadora de Juros Compostos
+# SimulaInvestir - Layout Mobills
 
-## Como rodar localmente:
-1. Instale as dependências:
-```
+## Como rodar local:
 pip install Flask gunicorn
-```
-
-2. Rode o projeto:
-```
 python app.py
-```
 
-## Deploy no Fly.io:
-```
+## Deploy Fly.io:
 fly launch
 fly deploy
-```
